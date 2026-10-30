@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Analyse des avis{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Analyse des avis</h1>
+  <p>Collez un ou plusieurs avis de touristes (un avis par ligne). Le modèle détecte le sentiment, les mots qui ont pesé dans la décision, et la tonalité de chaque aspect du séjour cité.</p>
+</div>
+
+<section class="card">
+  <form id="form-avis">
+    <label for="texte">Avis à analyser</label>
+    <textarea id="texte" name="texte" placeholder="Ex. : Le personnel est adorable mais la chambre n'était pas propre." required></textarea>
+    <div class="actions">
+      <button class="btn" type="submit">Analyser</button>
+      <span class="muted small">Exemples :</span>
+      <button class="btn ghost" type="button" data-exemple="0">Avis positif</button>
+      <button class="btn ghost" type="button" data-exemple="1">Avis négatif</button>
+      <button class="btn ghost" type="button" data-exemple="2">Avis mitigé</button>
+      <button class="btn ghost" type="button" data-exemple="3">3 avis à la fois</button>
+    </div>
+    <div id="erreur"></div>
+  </form>
+</section>
+
+<section class="card" id="resultats" style="margin-top:16px" hidden>
+  <h2>Résultats</h2>
+  <div id="resume" class="actions" style="margin:6px 0 10px"></div>
+  <div id="liste"></div>
+  <p class="muted small" style="margin-top:12px">Le modèle est entraîné sur des avis synthétiques en français : sur de vrais avis (autres langues, ironie, argot) la fiabilité sera plus faible.</p>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/sentiment.js') }}"></script>{% endblock %}

@@ -1,0 +1,145 @@
+/* AtlasInsight — styles. Les couleurs sont des variables ; le mode sombre suit le système. */
+:root {
+  color-scheme: light;
+  --bg: #f4f3ef;
+  --surface: #fcfcfb;
+  --text: #0b0b0b;
+  --text-2: #52514e;
+  --muted: #7b7a74;
+  --line: #e4e2dc;
+  --accent: #2a78d6;
+  --accent-ink: #ffffff;
+  --c1: #2a78d6;
+  --c2: #eb6834;
+  --c3: #1baf7a;
+  --c4: #eda100;
+  --good: #0a6b3d;   --good-bg: #e3f4ea;
+  --warn: #8a5a00;   --warn-bg: #fbf0d8;
+  --bad:  #b3261e;   --bad-bg:  #fbe6e4;
+  --shadow: 0 1px 2px rgba(0,0,0,.05), 0 4px 14px rgba(0,0,0,.04);
+  --radius: 12px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg: #121211;
+    --surface: #1a1a19;
+    --text: #f0efec;
+    --text-2: #c3c2b7;
+    --muted: #96958b;
+    --line: #2e2d2b;
+    --accent: #3987e5;
+    --c1: #3987e5;
+    --c2: #d95926;
+    --c3: #199e70;
+    --c4: #c98500;
+    --good: #7fd6a6;  --good-bg: #16301f;
+    --warn: #f0c35a;  --warn-bg: #33290f;
+    --bad:  #ff9b94;  --bad-bg:  #3a1a18;
+    --shadow: none;
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font: 15px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+h1, h2, h3 { line-height: 1.2; margin: 0 0 .5rem; letter-spacing: -.01em; }
+h1 { font-size: 1.7rem; }
+h2 { font-size: 1.1rem; }
+p { margin: 0 0 .75rem; }
+a { color: var(--accent); }
+.muted { color: var(--muted); }
+.small { font-size: .85rem; }
+
+/* --- barre de navigation --- */
+.topbar { background: var(--surface); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; }
+.topbar-inner { max-width: 1180px; margin: 0 auto; padding: 0 16px; display: flex; align-items: center; gap: 24px; min-height: 56px; flex-wrap: wrap; }
+.brand { font-weight: 700; font-size: 1.1rem; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+.brand-mark { width: 22px; height: 22px; border-radius: 6px; background: linear-gradient(135deg, var(--c1), var(--c2)); display: inline-block; }
+.nav { display: flex; gap: 4px; flex-wrap: wrap; }
+.nav a { padding: 8px 12px; border-radius: 8px; color: var(--text-2); text-decoration: none; font-weight: 500; }
+.nav a:hover { background: var(--bg); color: var(--text); }
+.nav a[aria-current="page"] { background: var(--bg); color: var(--text); box-shadow: inset 0 -2px 0 var(--accent); border-radius: 8px 8px 0 0; }
+
+/* --- mise en page --- */
+.container { max-width: 1180px; margin: 0 auto; padding: 24px 16px 48px; }
+.page-head { margin-bottom: 20px; }
+.page-head p { color: var(--text-2); max-width: 70ch; }
+.grid { display: grid; gap: 16px; }
+.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.kpis { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); margin-bottom: 16px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); min-width: 0; }
+.card > h2 { margin-bottom: 2px; }
+.card > .sub { color: var(--muted); font-size: .85rem; margin-bottom: 12px; }
+.kpi .label { color: var(--muted); font-size: .8rem; text-transform: uppercase; letter-spacing: .04em; }
+.kpi .value { font-size: 1.7rem; font-weight: 700; letter-spacing: -.02em; }
+.kpi .note { color: var(--text-2); font-size: .85rem; }
+.chart-box { position: relative; height: 300px; }
+.chart-box.tall { height: 340px; }
+@media (max-width: 860px) { .cols-2, .cols-3 { grid-template-columns: 1fr; } }
+
+/* --- formulaires --- */
+label { display: block; font-weight: 600; font-size: .85rem; margin-bottom: 4px; color: var(--text-2); }
+input[type=text], input[type=number], select, textarea {
+  width: 100%; padding: 9px 11px; border: 1px solid var(--line); border-radius: 8px;
+  background: var(--bg); color: var(--text); font: inherit;
+}
+textarea { min-height: 150px; resize: vertical; }
+input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible, .nav a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; }
+.check { display: flex; align-items: center; gap: 8px; font-weight: 500; margin: 0; color: var(--text); }
+.check input { width: 18px; height: 18px; accent-color: var(--accent); }
+.range-row { display: flex; align-items: center; gap: 10px; }
+.range-row input[type=range] { flex: 1; accent-color: var(--accent); }
+.range-row output { min-width: 56px; text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+.btn { appearance: none; border: 0; background: var(--accent); color: var(--accent-ink); padding: 10px 18px; border-radius: 8px; font: inherit; font-weight: 600; cursor: pointer; }
+.btn:hover { filter: brightness(1.08); }
+.btn[disabled] { opacity: .6; cursor: progress; }
+.btn.ghost { background: transparent; color: var(--text); border: 1px solid var(--line); font-weight: 500; padding: 7px 12px; }
+.btn.ghost:hover { background: var(--bg); }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 12px; }
+.alert { background: var(--bad-bg); color: var(--bad); border-radius: 8px; padding: 10px 12px; margin-top: 12px; }
+
+/* --- badges, barres, chips --- */
+.badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 9px; border-radius: 999px; font-size: .8rem; font-weight: 600; white-space: nowrap; }
+.badge.positif, .badge.up    { background: var(--good-bg); color: var(--good); }
+.badge.neutre, .badge.flat   { background: var(--warn-bg); color: var(--warn); }
+.badge.négatif, .badge.down  { background: var(--bad-bg);  color: var(--bad); }
+.bar-row { display: grid; grid-template-columns: 70px 1fr 48px; align-items: center; gap: 8px; font-size: .85rem; margin: 3px 0; }
+.bar { height: 8px; background: var(--bg); border-radius: 4px; overflow: hidden; }
+.bar > span { display: block; height: 100%; background: var(--accent); border-radius: 4px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.chip { background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 1px 8px; font-size: .82rem; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 8px; font-size: .85rem; color: var(--text-2); }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 5px; }
+
+/* --- tableaux --- */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: .9rem; }
+th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th { font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); font-weight: 600; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.heat td, .heat th { text-align: center; padding: 6px 8px; }
+.heat th:first-child, .heat td:first-child { text-align: left; }
+.heat td { border-bottom: 2px solid var(--surface); border-right: 2px solid var(--surface); font-variant-numeric: tabular-nums; }
+
+/* --- résultats d'avis --- */
+.result { border-top: 1px solid var(--line); padding: 14px 0; }
+.result:first-child { border-top: 0; padding-top: 0; }
+.result blockquote { margin: 6px 0 10px; padding-left: 12px; border-left: 3px solid var(--line); color: var(--text-2); }
+.result-head { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.aspect { display: grid; grid-template-columns: 110px 82px 1fr; gap: 8px; align-items: baseline; padding: 4px 0; font-size: .9rem; }
+@media (max-width: 600px) { .aspect { grid-template-columns: 1fr; gap: 2px; } }
+
+footer { max-width: 1180px; margin: 0 auto; padding: 0 16px 32px; color: var(--muted); font-size: .82rem; }
+.spinner { color: var(--muted); padding: 24px 0; }
+
+/* --- ajustements : tableau de chaleur compact, ancres sous l'en-tête collant --- */
+.heat th { white-space: normal; letter-spacing: 0; text-transform: none; font-size: .78rem; padding: 6px 4px; line-height: 1.2; vertical-align: bottom; }
+.heat td { padding: 6px 4px; }
+.heat th[scope="row"] { font-size: .85rem; font-weight: 500; color: var(--text); white-space: nowrap; padding-right: 8px; }
+[id] { scroll-margin-top: 72px; }

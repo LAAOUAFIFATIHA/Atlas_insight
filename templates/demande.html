@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Demande touristique{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Demande touristique</h1>
+  <p>Prévision des arrivées sur les 12 prochains mois, par destination, pour anticiper les périodes de forte et de faible fréquentation.</p>
+</div>
+
+<section class="card">
+  <div style="max-width:320px">
+    <label for="destination">Destination</label>
+    <select id="destination">
+      {% for d in destinations %}<option value="{{ d }}">{{ d }}</option>{% endfor %}
+    </select>
+  </div>
+</section>
+
+<div id="kpis" class="grid kpis" style="margin-top:16px" aria-live="polite"></div>
+
+<div class="grid cols-2">
+  <section class="card">
+    <h2>Arrivées mensuelles</h2>
+    <div class="sub">Milliers de touristes : 36 derniers mois observés et 12 mois prévus</div>
+    <div class="chart-box tall"><canvas id="ch-demande" role="img" aria-label="Historique et prévision des arrivées"></canvas></div>
+  </section>
+  <section class="card">
+    <h2>Détail des 12 prochains mois</h2>
+    <div class="sub">Indice : 1 = moyenne mensuelle des 12 derniers mois de la destination</div>
+    <div class="table-wrap" id="table-prev"></div>
+  </section>
+</div>
+
+<section class="card" style="margin-top:16px">
+  <h2>Calendrier de la demande : toutes destinations</h2>
+  <div class="sub">Plus la case est foncée, plus la fréquentation prévue est forte (indice relatif à la moyenne de chaque destination)</div>
+  <div class="table-wrap" id="calendrier"></div>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/demande.js') }}"></script>{% endblock %}

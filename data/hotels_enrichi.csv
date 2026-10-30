@@ -1,0 +1,241 @@
+hotel_id,nom,destination,type_hebergement,etoiles,capacite_chambres,distance_centre_km,piscine,spa,petit_dej_inclus,annee_renovation,prix_base_nuit,note_moyenne_hotel,nb_avis
+H0001,Dar Baie Tanger,Tanger,Maison d'hôtes,3,11,1.0,0,0,1,2015,583.0,7.271428571428571,7
+H0002,Hôtel Bahia Rabat,Rabat,Hôtel,4,26,0.8,1,0,1,2017,1118.0,8.58,10
+H0003,Hôtel Sahara Rabat,Rabat,Hôtel,2,67,1.1,0,1,1,2012,536.0,5.412121212121212,33
+H0004,Auberge Océan Agadir,Agadir,Auberge,1,26,1.7,0,0,1,2024,221.0,6.208333333333333,12
+H0005,Hôtel Sultana Agadir,Agadir,Hôtel,5,47,0.6,1,0,1,2011,2462.0,8.025925925925925,27
+H0006,Hôtel Amazigh Casablanca,Casablanca,Hôtel,5,174,5.2,0,0,0,2020,2535.0,7.271264367816093,87
+H0007,Riad Jasmin Fès,Fès,Riad,4,18,0.5,0,1,1,2022,1363.0,7.483333333333334,6
+H0008,Hôtel Andalous Casablanca,Casablanca,Hôtel,5,44,0.9,1,1,1,2019,2861.0,8.864102564102565,39
+H0009,Dar Bahia Casablanca,Casablanca,Maison d'hôtes,3,11,0.7,0,0,0,2012,627.0,6.733333333333333,3
+H0010,Dar Azur Fès,Fès,Maison d'hôtes,2,10,0.3,1,0,1,2012,382.0,5.975,8
+H0011,Resort Andalous Agadir,Agadir,Resort,4,557,1.7,1,1,1,2015,1941.0,8.031118881118882,286
+H0012,Hôtel Majorelle Casablanca,Casablanca,Hôtel,5,58,1.5,0,0,1,2021,2051.0,7.2575,40
+H0013,Hôtel Kasbah Rabat,Rabat,Hôtel,5,74,0.5,1,0,0,2014,2680.0,8.664444444444444,45
+H0014,Resort Palmeraie Essaouira,Essaouira,Resort,5,190,6.0,1,1,0,2024,3010.0,7.514851485148514,101
+H0015,Riad Amazigh Marrakech,Marrakech,Riad,3,17,0.2,0,0,1,2024,724.0,6.6,2
+H0016,Auberge Sahara Marrakech,Marrakech,Auberge,2,16,0.3,1,0,1,2021,434.0,6.757142857142857,7
+H0017,Dar Sultana Casablanca,Casablanca,Maison d'hôtes,4,12,2.0,0,0,1,2015,998.0,6.675,4
+H0018,Resort Argan Rabat,Rabat,Resort,5,164,1.0,1,1,0,2015,3713.0,7.533333333333333,72
+H0019,Hôtel Saphir Essaouira,Essaouira,Hôtel,4,106,2.8,0,1,1,2021,1421.0,6.3431372549019605,51
+H0020,Riad Oasis Marrakech,Marrakech,Riad,3,7,0.5,0,0,1,2025,811.0,7.3,2
+H0021,Hôtel Médina Rabat,Rabat,Hôtel,3,76,1.1,1,0,0,2015,749.0,7.469230769230769,39
+H0022,Riad Océan Marrakech,Marrakech,Riad,3,18,0.1,0,0,1,2021,906.0,7.4,8
+H0023,Hôtel Nomade Casablanca,Casablanca,Hôtel,4,154,3.7,1,0,1,2015,1134.0,7.788372093023256,86
+H0024,Auberge Andalous Merzouga,Merzouga,Auberge,2,26,2.5,0,0,1,2009,297.0,5.5200000000000005,10
+H0025,Hôtel Argan Marrakech,Marrakech,Hôtel,3,90,1.0,0,0,0,2016,818.0,7.1803921568627445,51
+H0026,Dar Océan Marrakech,Marrakech,Maison d'hôtes,3,5,1.1,1,0,0,2017,790.0,6.9799999999999995,5
+H0027,Resort Médina Agadir,Agadir,Resort,4,109,0.0,1,1,1,2014,1381.0,8.180769230769231,52
+H0028,Riad Argan Fès,Fès,Riad,3,9,2.0,0,0,1,2021,590.0,7.12,5
+H0029,Auberge Sultana Ouarzazate,Ouarzazate,Auberge,2,21,1.4,0,0,1,2023,252.0,6.891666666666667,12
+H0030,Riad Nomade Merzouga,Merzouga,Riad,4,15,0.2,0,0,1,2010,1037.0,7.6692307692307695,13
+H0031,Hôtel Zitouna Marrakech,Marrakech,Hôtel,4,61,5.7,1,0,1,2009,1280.0,8.296,25
+H0032,Auberge Amazigh Marrakech,Marrakech,Auberge,1,22,1.8,0,0,1,2011,244.0,4.485714285714286,7
+H0033,Hôtel Oasis Rabat,Rabat,Hôtel,1,103,8.0,0,1,1,2012,339.0,4.863157894736842,38
+H0034,Dar Sultana Casablanca,Casablanca,Maison d'hôtes,3,5,0.5,0,0,1,2015,624.0,6.75,4
+H0035,Hôtel Azur Essaouira,Essaouira,Hôtel,3,57,1.1,1,0,0,2015,725.0,7.367999999999999,25
+H0036,Resort Amazigh Tanger,Tanger,Resort,4,173,1.0,1,0,1,2020,1198.0,7.663541666666667,96
+H0037,Hôtel Médina Marrakech,Marrakech,Hôtel,4,82,3.1,1,0,1,2020,1300.0,8.44375,48
+H0038,Hôtel Oasis Rabat,Rabat,Hôtel,4,66,0.9,0,0,1,2017,1429.0,8.483333333333334,42
+H0039,Riad Baie Marrakech,Marrakech,Riad,4,15,5.0,0,1,1,2024,1460.0,6.08,10
+H0040,Hôtel Sahara Agadir,Agadir,Hôtel,5,84,3.5,0,1,0,2015,2500.0,7.911111111111111,45
+H0041,Resort Baie Agadir,Agadir,Resort,4,122,0.3,1,0,1,2024,1599.0,7.0297297297297305,74
+H0042,Resort Saphir Agadir,Agadir,Resort,4,417,4.7,1,1,1,2009,1567.0,6.968161434977579,223
+H0043,Resort Oasis Tanger,Tanger,Resort,5,242,1.6,1,1,0,2020,3868.0,7.407692307692307,143
+H0044,Hôtel Saphir Fès,Fès,Hôtel,3,86,1.2,1,0,1,2015,715.0,7.8805555555555555,36
+H0045,Auberge Océan Merzouga,Merzouga,Auberge,1,27,1.6,1,0,1,2021,192.0,5.3625,8
+H0046,Dar Kasbah Merzouga,Merzouga,Maison d'hôtes,4,11,1.1,0,0,1,2016,743.0,8.1,3
+H0047,Hôtel Amazigh Agadir,Agadir,Hôtel,2,199,0.2,1,1,1,2023,605.0,6.293814432989691,97
+H0048,Riad Argan Marrakech,Marrakech,Riad,4,19,0.6,1,1,1,2016,2018.0,7.890000000000001,10
+H0049,Riad Oasis Tanger,Tanger,Riad,5,12,1.3,1,0,1,2020,2951.0,7.7,6
+H0050,Dar Saphir Merzouga,Merzouga,Maison d'hôtes,4,8,0.3,0,0,1,2022,988.0,7.65,4
+H0051,Hôtel Atlas Casablanca,Casablanca,Hôtel,2,88,1.3,1,0,1,2008,554.0,5.824242424242424,33
+H0052,Resort Sultana Agadir,Agadir,Resort,5,231,4.1,1,0,1,2021,2924.0,7.032450331125829,151
+H0053,Resort Sultana Agadir,Agadir,Resort,5,159,1.4,1,1,1,2021,3739.0,8.701020408163266,98
+H0054,Riad Azur Marrakech,Marrakech,Riad,3,13,0.9,1,0,1,2017,1043.0,7.771428571428571,7
+H0055,Hôtel Jasmin Tanger,Tanger,Hôtel,4,168,0.7,0,1,1,2010,1152.0,7.417441860465116,86
+H0056,Dar Oasis Casablanca,Casablanca,Maison d'hôtes,4,6,1.8,0,0,1,2019,964.0,7.62,5
+H0057,Hôtel Azur Rabat,Rabat,Hôtel,3,52,3.2,1,0,1,2023,831.0,7.3,25
+H0058,Dar Andalous Rabat,Rabat,Maison d'hôtes,2,10,0.9,0,0,1,2014,342.0,6.04,5
+H0059,Hôtel Atlas Rabat,Rabat,Hôtel,4,94,0.2,0,0,0,2010,1212.0,8.508510638297873,47
+H0060,Resort Atlas Agadir,Agadir,Resort,5,169,6.2,1,1,0,2011,3319.0,7.552380952380952,84
+H0061,Hôtel Zitouna Casablanca,Casablanca,Hôtel,4,56,0.1,0,0,1,2008,1164.0,8.25925925925926,27
+H0062,Hôtel Atlas Tanger,Tanger,Hôtel,4,53,1.2,1,0,1,2011,1062.0,7.75,30
+H0063,Hôtel Amazigh Rabat,Rabat,Hôtel,3,122,7.7,1,0,1,2016,688.0,6.7828125,64
+H0064,Resort Atlas Agadir,Agadir,Resort,4,342,0.5,1,1,0,2009,2399.0,8.446951219512195,164
+H0065,Dar Médina Chefchaouen,Chefchaouen,Maison d'hôtes,4,4,0.0,1,0,1,2025,831.0,8.142857142857142,7
+H0066,Riad Bahia Marrakech,Marrakech,Riad,5,5,1.0,0,0,1,2023,3804.0,8.283333333333333,6
+H0067,Resort Bahia Essaouira,Essaouira,Resort,4,328,10.2,1,1,1,2014,1635.0,7.533536585365853,164
+H0068,Hôtel Nomade Marrakech,Marrakech,Hôtel,4,55,0.8,1,1,1,2013,1816.0,7.95,34
+H0069,Auberge Argan Marrakech,Marrakech,Auberge,2,28,1.9,0,0,1,2010,414.0,6.2,15
+H0070,Resort Azur Agadir,Agadir,Resort,4,166,3.2,1,0,1,2014,1339.0,7.354117647058824,85
+H0071,Hôtel Argan Marrakech,Marrakech,Hôtel,3,105,3.8,0,1,1,2009,857.0,7.001960784313726,51
+H0072,Riad Jasmin Marrakech,Marrakech,Riad,5,9,1.2,1,0,1,2017,2741.0,8.683333333333334,6
+H0073,Riad Palmeraie Marrakech,Marrakech,Riad,3,17,0.2,0,0,1,2011,1102.0,6.15,8
+H0074,Hôtel Amazigh Agadir,Agadir,Hôtel,5,93,3.7,0,1,0,2019,3615.0,7.703773584905661,53
+H0075,Hôtel Azur Rabat,Rabat,Hôtel,4,148,1.3,1,1,1,2021,1248.0,7.589130434782609,92
+H0076,Auberge Bahia Marrakech,Marrakech,Auberge,1,22,0.4,0,0,1,2017,248.0,6.4875,8
+H0077,Riad Saphir Fès,Fès,Riad,3,13,0.3,0,0,0,2017,637.0,7.8199999999999985,5
+H0078,Hôtel Majorelle Rabat,Rabat,Hôtel,3,149,0.1,0,0,1,2019,731.0,7.7176470588235295,85
+H0079,Dar Andalous Marrakech,Marrakech,Maison d'hôtes,4,9,3.4,0,0,0,2016,1096.0,7.175,8
+H0080,Riad Nomade Marrakech,Marrakech,Riad,4,15,1.1,1,0,0,2016,1341.0,8.05,8
+H0081,Hôtel Atlas Essaouira,Essaouira,Hôtel,4,37,2.5,1,0,0,2014,953.0,7.7299999999999995,20
+H0082,Auberge Oasis Rabat,Rabat,Auberge,1,28,1.0,0,0,1,2015,169.0,6.609999999999999,10
+H0083,Resort Oasis Agadir,Agadir,Resort,4,380,0.9,1,1,1,2015,1929.0,8.5551912568306,183
+H0084,Resort Zitouna Rabat,Rabat,Resort,5,158,3.6,1,1,1,2009,3421.0,8.812903225806451,124
+H0085,Riad Zitouna Marrakech,Marrakech,Riad,4,9,0.5,0,0,1,2009,1453.0,8.65,4
+H0086,Hôtel Baie Casablanca,Casablanca,Hôtel,4,187,1.2,1,0,0,2020,1343.0,8.130107526881721,93
+H0087,Riad Océan Tanger,Tanger,Riad,4,13,0.8,0,0,1,2025,1130.0,8.266666666666666,6
+H0088,Hôtel Atlas Casablanca,Casablanca,Hôtel,4,82,1.6,1,0,1,2014,1139.0,7.504166666666666,24
+H0089,Hôtel Argan Rabat,Rabat,Hôtel,3,79,3.3,0,0,1,2008,739.0,7.428260869565217,46
+H0090,Hôtel Baie Agadir,Agadir,Hôtel,4,47,0.1,0,0,0,2025,1290.0,8.424,25
+H0091,Hôtel Andalous Rabat,Rabat,Hôtel,4,109,1.0,0,1,0,2014,1153.0,7.830612244897959,49
+H0092,Hôtel Sultana Agadir,Agadir,Hôtel,4,67,1.5,0,0,0,2021,988.0,6.8394736842105255,38
+H0093,Auberge Médina Casablanca,Casablanca,Auberge,1,22,2.1,0,0,1,2017,253.0,6.525,4
+H0094,Hôtel Kasbah Casablanca,Casablanca,Hôtel,3,123,0.1,0,1,0,2017,696.0,7.106122448979591,49
+H0095,Dar Baie Marrakech,Marrakech,Maison d'hôtes,3,8,1.0,0,0,1,2009,731.0,7.1000000000000005,3
+H0096,Riad Jasmin Rabat,Rabat,Riad,3,14,1.4,0,0,0,2015,701.0,6.720000000000001,5
+H0097,Hôtel Amazigh Marrakech,Marrakech,Hôtel,3,55,9.4,1,0,1,2011,932.0,5.526315789473684,19
+H0098,Riad Jasmin Marrakech,Marrakech,Riad,3,6,0.9,1,1,0,2025,994.0,7.125,4
+H0099,Hôtel Océan Marrakech,Marrakech,Hôtel,4,115,0.6,0,1,0,2017,1535.0,7.8,49
+H0100,Resort Sahara Marrakech,Marrakech,Resort,4,206,0.3,1,1,1,2014,2536.0,7.61340206185567,97
+H0101,Hôtel Majorelle Rabat,Rabat,Hôtel,4,116,4.0,0,0,1,2013,1060.0,6.6734375,64
+H0102,Riad Sultana Agadir,Agadir,Riad,3,13,2.4,0,1,0,2024,901.0,6.071428571428571,7
+H0103,Dar Majorelle Merzouga,Merzouga,Maison d'hôtes,2,4,1.0,0,0,1,2020,389.0,5.7250000000000005,4
+H0104,Dar Zitouna Marrakech,Marrakech,Maison d'hôtes,4,5,1.7,1,0,1,2024,1114.0,8.350000000000001,2
+H0105,Riad Saphir Fès,Fès,Riad,4,13,0.7,1,0,1,2009,1447.0,6.971428571428571,7
+H0106,Resort Amazigh Agadir,Agadir,Resort,4,208,1.2,1,1,1,2010,2101.0,6.805645161290323,124
+H0107,Hôtel Andalous Casablanca,Casablanca,Hôtel,5,47,3.0,0,1,1,2024,2292.0,9.183783783783785,37
+H0108,Resort Andalous Essaouira,Essaouira,Resort,4,160,1.2,1,1,0,2018,2088.0,7.654545454545455,88
+H0109,Dar Nomade Merzouga,Merzouga,Maison d'hôtes,2,5,2.6,0,0,1,2019,455.0,6.633333333333333,3
+H0110,Resort Saphir Essaouira,Essaouira,Resort,5,197,0.7,1,1,0,2010,3518.0,8.532,100
+H0111,Hôtel Sahara Marrakech,Marrakech,Hôtel,2,82,1.4,1,0,1,2013,524.0,6.385714285714286,28
+H0112,Hôtel Saphir Casablanca,Casablanca,Hôtel,4,86,1.1,0,1,1,2012,1423.0,7.724528301886792,53
+H0113,Hôtel Océan Tanger,Tanger,Hôtel,4,50,1.9,0,1,1,2016,1447.0,8.017241379310345,29
+H0114,Hôtel Argan Casablanca,Casablanca,Hôtel,4,99,2.2,0,0,1,2022,1206.0,6.615384615384615,52
+H0115,Hôtel Azur Tanger,Tanger,Hôtel,5,57,0.5,0,0,1,2016,2445.0,8.240625,32
+H0116,Hôtel Majorelle Fès,Fès,Hôtel,5,152,0.0,1,0,1,2013,1985.0,8.229473684210525,95
+H0117,Hôtel Oasis Agadir,Agadir,Hôtel,4,48,4.2,1,0,1,2009,1326.0,7.7,27
+H0118,Hôtel Atlas Rabat,Rabat,Hôtel,2,51,0.3,0,0,1,2013,440.0,8.235,20
+H0119,Hôtel Majorelle Tanger,Tanger,Hôtel,4,57,0.1,0,0,1,2020,1505.0,7.586363636363637,22
+H0120,Dar Majorelle Marrakech,Marrakech,Maison d'hôtes,3,6,1.5,0,0,1,2008,743.0,7.540000000000001,5
+H0121,Dar Saphir Marrakech,Marrakech,Maison d'hôtes,2,11,2.0,1,0,1,2024,452.0,5.87,10
+H0122,Riad Bahia Fès,Fès,Riad,4,20,1.1,0,0,1,2019,1097.0,8.692307692307692,13
+H0123,Resort Sahara Agadir,Agadir,Resort,4,145,0.7,1,1,1,2013,2387.0,8.076271186440678,59
+H0124,Hôtel Nomade Casablanca,Casablanca,Hôtel,5,47,0.2,1,1,1,2009,2696.0,8.966666666666667,30
+H0125,Hôtel Médina Agadir,Agadir,Hôtel,3,102,1.5,0,0,1,2012,777.0,7.178333333333333,60
+H0126,Hôtel Saphir Rabat,Rabat,Hôtel,3,76,3.4,1,0,1,2015,739.0,6.840625,32
+H0127,Hôtel Majorelle Rabat,Rabat,Hôtel,2,51,2.0,1,0,1,2013,621.0,6.8428571428571425,35
+H0128,Dar Palmeraie Fès,Fès,Maison d'hôtes,3,7,0.6,0,1,0,2010,649.0,7.2,4
+H0129,Dar Nomade Casablanca,Casablanca,Maison d'hôtes,3,11,0.7,0,0,0,2009,675.0,7.0200000000000005,5
+H0130,Hôtel Océan Casablanca,Casablanca,Hôtel,4,97,0.1,0,0,0,2017,1217.0,7.3420000000000005,50
+H0131,Hôtel Majorelle Agadir,Agadir,Hôtel,3,52,1.9,0,1,0,2024,884.0,6.132000000000001,25
+H0132,Resort Atlas Casablanca,Casablanca,Resort,5,191,0.3,1,1,1,2020,3808.0,6.979646017699116,113
+H0133,Dar Bahia Fès,Fès,Maison d'hôtes,3,12,3.7,0,1,1,2014,664.0,6.55,4
+H0134,Hôtel Atlas Tanger,Tanger,Hôtel,4,70,1.0,1,0,0,2011,1112.0,7.10952380952381,42
+H0135,Riad Lalla Marrakech,Marrakech,Riad,3,19,1.8,0,0,1,2021,1082.0,6.7299999999999995,10
+H0136,Riad Amazigh Marrakech,Marrakech,Riad,5,19,0.9,1,0,1,2012,2898.0,9.391666666666667,12
+H0137,Dar Jasmin Casablanca,Casablanca,Maison d'hôtes,3,12,0.9,0,0,0,2023,604.0,8.2375,8
+H0138,Riad Atlas Chefchaouen,Chefchaouen,Riad,3,20,0.6,1,0,0,2010,822.0,6.6000000000000005,7
+H0139,Riad Océan Fès,Fès,Riad,4,10,1.6,0,0,1,2020,946.0,7.7,6
+H0140,Riad Oasis Marrakech,Marrakech,Riad,5,19,0.8,0,0,1,2010,3177.0,8.342857142857143,7
+H0141,Riad Médina Chefchaouen,Chefchaouen,Riad,4,18,0.0,0,0,1,2013,1186.0,8.423076923076923,13
+H0142,Dar Atlas Agadir,Agadir,Maison d'hôtes,2,6,1.5,0,0,1,2012,380.0,5.75,2
+H0143,Resort Andalous Agadir,Agadir,Resort,4,118,1.7,1,1,1,2014,1904.0,8.0,59
+H0144,Auberge Zitouna Ouarzazate,Ouarzazate,Auberge,2,20,3.2,0,0,0,2012,244.0,6.478571428571429,14
+H0145,Hôtel Océan Marrakech,Marrakech,Hôtel,4,59,0.3,0,0,1,2010,1561.0,8.867567567567567,37
+H0146,Hôtel Lalla Casablanca,Casablanca,Hôtel,5,66,0.4,0,0,1,2013,2057.0,8.971428571428572,56
+H0147,Riad Nomade Fès,Fès,Riad,4,17,0.1,0,0,1,2018,1535.0,7.3875,16
+H0148,Riad Médina Marrakech,Marrakech,Riad,3,14,0.4,1,0,0,2010,1072.0,6.6125,8
+H0149,Hôtel Baie Tanger,Tanger,Hôtel,4,65,1.0,0,0,0,2017,1099.0,7.45,28
+H0150,Dar Bahia Casablanca,Casablanca,Maison d'hôtes,3,10,2.7,0,0,1,2016,618.0,6.7749999999999995,4
+H0151,Dar Sultana Marrakech,Marrakech,Maison d'hôtes,3,10,1.2,0,0,1,2016,861.0,5.949999999999999,2
+H0152,Dar Saphir Marrakech,Marrakech,Maison d'hôtes,3,7,1.6,0,0,1,2012,543.0,6.55,4
+H0153,Resort Majorelle Agadir,Agadir,Resort,5,144,3.4,1,1,1,2014,4293.0,8.200000000000001,88
+H0154,Auberge Atlas Marrakech,Marrakech,Auberge,2,20,0.2,0,0,1,2012,386.0,6.6000000000000005,6
+H0155,Hôtel Saphir Marrakech,Marrakech,Hôtel,3,58,0.2,1,1,1,2015,1028.0,7.612903225806452,31
+H0156,Riad Majorelle Essaouira,Essaouira,Riad,3,7,5.9,0,0,1,2015,690.0,7.3,2
+H0157,Hôtel Zitouna Casablanca,Casablanca,Hôtel,3,141,1.3,0,1,0,2009,827.0,7.248333333333333,60
+H0158,Hôtel Kasbah Casablanca,Casablanca,Hôtel,3,120,1.0,0,1,0,2017,945.0,7.501449275362319,69
+H0159,Riad Jasmin Marrakech,Marrakech,Riad,3,10,1.2,0,0,1,2020,1041.0,8.6,2
+H0160,Dar Sahara Casablanca,Casablanca,Maison d'hôtes,3,11,2.5,1,0,0,2021,774.0,7.183333333333334,6
+H0161,Hôtel Saphir Casablanca,Casablanca,Hôtel,2,110,0.3,0,0,1,2013,542.0,6.298039215686274,51
+H0162,Riad Médina Fès,Fès,Riad,3,11,0.3,0,0,1,2010,605.0,6.775,4
+H0163,Auberge Baie Marrakech,Marrakech,Auberge,1,26,2.3,1,0,1,2022,204.0,5.8,5
+H0164,Dar Médina Essaouira,Essaouira,Maison d'hôtes,2,5,0.8,0,0,1,2015,314.0,7.12,5
+H0165,Riad Majorelle Ouarzazate,Ouarzazate,Riad,3,7,0.4,1,1,1,2019,792.0,6.516666666666667,6
+H0166,Hôtel Andalous Marrakech,Marrakech,Hôtel,2,55,6.6,1,0,1,2017,489.0,4.503333333333333,30
+H0167,Hôtel Amazigh Marrakech,Marrakech,Hôtel,3,42,0.0,1,0,1,2022,795.0,6.523076923076923,26
+H0168,Hôtel Oasis Marrakech,Marrakech,Hôtel,4,100,0.6,0,1,1,2015,1647.0,7.662264150943397,53
+H0169,Dar Atlas Fès,Fès,Maison d'hôtes,4,12,4.2,0,0,0,2022,887.0,8.6,6
+H0170,Riad Palmeraie Marrakech,Marrakech,Riad,4,16,0.6,0,0,1,2011,1459.0,7.128571428571428,7
+H0171,Auberge Amazigh Essaouira,Essaouira,Auberge,1,14,1.4,0,0,1,2019,176.0,5.066666666666666,3
+H0172,Hôtel Atlas Rabat,Rabat,Hôtel,2,106,1.1,0,0,1,2019,418.0,5.796610169491525,59
+H0173,Hôtel Sahara Rabat,Rabat,Hôtel,2,149,8.1,0,1,1,2013,576.0,6.260273972602739,73
+H0174,Dar Lalla Agadir,Agadir,Maison d'hôtes,2,12,0.7,0,0,1,2017,430.0,5.916666666666667,6
+H0175,Auberge Palmeraie Merzouga,Merzouga,Auberge,2,19,8.4,0,0,1,2017,304.0,6.2375,8
+H0176,Hôtel Argan Marrakech,Marrakech,Hôtel,3,43,1.1,0,0,1,2012,788.0,7.366666666666666,15
+H0177,Resort Lalla Agadir,Agadir,Resort,4,292,0.3,1,0,1,2008,1489.0,7.30794701986755,151
+H0178,Hôtel Nomade Casablanca,Casablanca,Hôtel,3,182,9.1,0,0,1,2020,701.0,6.419767441860466,86
+H0179,Dar Bahia Ouarzazate,Ouarzazate,Maison d'hôtes,4,12,0.1,1,0,1,2020,994.0,6.959999999999999,5
+H0180,Hôtel Oasis Fès,Fès,Hôtel,3,132,0.2,0,0,0,2018,674.0,7.666666666666667,54
+H0181,Hôtel Baie Rabat,Rabat,Hôtel,4,129,2.7,0,1,1,2021,1493.0,7.378181818181818,55
+H0182,Hôtel Argan Marrakech,Marrakech,Hôtel,4,99,0.1,1,0,0,2016,1444.0,8.078125,64
+H0183,Hôtel Nomade Merzouga,Merzouga,Hôtel,2,108,1.0,1,1,1,2015,604.0,6.613333333333334,45
+H0184,Dar Baie Agadir,Agadir,Maison d'hôtes,3,6,0.7,0,0,0,2020,600.0,6.633333333333333,3
+H0185,Hôtel Amazigh Agadir,Agadir,Hôtel,3,292,1.0,0,1,0,2015,738.0,8.304697986577182,149
+H0186,Dar Océan Ouarzazate,Ouarzazate,Maison d'hôtes,3,12,6.3,0,0,0,2023,598.0,7.1000000000000005,3
+H0187,Hôtel Sultana Casablanca,Casablanca,Hôtel,4,92,2.3,0,0,0,2008,1153.0,8.73695652173913,46
+H0188,Dar Océan Agadir,Agadir,Maison d'hôtes,4,10,0.1,0,0,1,2021,1133.0,7.75,2
+H0189,Auberge Nomade Fès,Fès,Auberge,2,18,0.4,0,0,1,2020,275.0,6.1499999999999995,6
+H0190,Riad Andalous Marrakech,Marrakech,Riad,4,8,2.3,0,1,1,2011,1544.0,7.528571428571429,7
+H0191,Hôtel Palmeraie Casablanca,Casablanca,Hôtel,2,74,0.1,1,0,1,2021,627.0,5.0928571428571425,28
+H0192,Riad Jasmin Marrakech,Marrakech,Riad,4,5,0.8,1,0,1,2016,1579.0,7.3,1
+H0193,Dar Andalous Marrakech,Marrakech,Maison d'hôtes,2,7,0.4,1,0,1,2012,495.0,6.233333333333333,3
+H0194,Resort Saphir Essaouira,Essaouira,Resort,4,120,0.1,1,1,1,2013,1835.0,8.226785714285715,56
+H0195,Hôtel Andalous Fès,Fès,Hôtel,3,91,6.9,1,0,1,2014,666.0,6.1577777777777785,45
+H0196,Hôtel Azur Casablanca,Casablanca,Hôtel,4,53,3.7,1,0,1,2013,1710.0,7.871428571428572,21
+H0197,Resort Oasis Agadir,Agadir,Resort,4,118,1.8,1,1,0,2010,1402.0,7.074242424242424,66
+H0198,Hôtel Sahara Agadir,Agadir,Hôtel,3,78,0.7,1,0,1,2015,702.0,6.486111111111111,36
+H0199,Riad Sultana Fès,Fès,Riad,3,11,0.3,0,0,0,2017,565.0,7.957142857142857,7
+H0200,Dar Atlas Chefchaouen,Chefchaouen,Maison d'hôtes,4,7,0.5,0,0,1,2019,693.0,7.9,8
+H0201,Auberge Jasmin Ouarzazate,Ouarzazate,Auberge,1,10,0.3,1,0,1,2012,178.0,6.25,2
+H0202,Hôtel Atlas Casablanca,Casablanca,Hôtel,3,61,2.3,0,1,1,2019,1137.0,6.756521739130435,23
+H0203,Hôtel Baie Casablanca,Casablanca,Hôtel,3,89,0.7,1,0,1,2020,752.0,8.16595744680851,47
+H0204,Resort Majorelle Agadir,Agadir,Resort,5,261,5.9,1,1,1,2016,3219.0,7.953378378378377,148
+H0205,Auberge Baie Fès,Fès,Auberge,2,22,2.3,0,0,0,2013,242.0,6.7,6
+H0206,Hôtel Océan Agadir,Agadir,Hôtel,3,61,1.0,1,0,1,2012,757.0,6.05,30
+H0207,Resort Bahia Tanger,Tanger,Resort,4,390,6.5,1,1,1,2016,1733.0,7.504020100502513,199
+H0208,Dar Palmeraie Fès,Fès,Maison d'hôtes,4,8,0.4,0,0,0,2009,797.0,8.375,4
+H0209,Resort Amazigh Casablanca,Casablanca,Resort,4,284,1.4,1,1,1,2013,1944.0,6.157718120805369,149
+H0210,Dar Sultana Casablanca,Casablanca,Maison d'hôtes,3,8,3.8,0,0,0,2014,599.0,7.325,4
+H0211,Hôtel Médina Casablanca,Casablanca,Hôtel,2,137,0.1,1,1,1,2017,627.0,7.318181818181818,55
+H0212,Hôtel Nomade Marrakech,Marrakech,Hôtel,3,84,1.0,0,1,1,2024,879.0,7.202941176470588,34
+H0213,Dar Atlas Marrakech,Marrakech,Maison d'hôtes,3,5,1.0,0,0,1,2024,717.0,7.0481616047800735,0
+H0214,Resort Oasis Tanger,Tanger,Resort,4,80,18.0,1,1,0,2017,1611.0,6.924242424242424,33
+H0215,Hôtel Majorelle Casablanca,Casablanca,Hôtel,3,111,8.9,1,1,1,2024,941.0,6.03125,48
+H0216,Hôtel Azur Casablanca,Casablanca,Hôtel,5,227,1.5,0,1,1,2020,2970.0,8.473728813559323,118
+H0217,Dar Jasmin Fès,Fès,Maison d'hôtes,3,11,0.9,1,0,0,2024,501.0,7.366666666666667,3
+H0218,Hôtel Sultana Rabat,Rabat,Hôtel,1,154,0.4,1,0,1,2024,347.0,6.343283582089552,67
+H0219,Hôtel Atlas Casablanca,Casablanca,Hôtel,3,67,4.7,1,0,1,2013,839.0,5.239285714285714,28
+H0220,Hôtel Palmeraie Rabat,Rabat,Hôtel,4,83,1.2,1,0,0,2023,1287.0,7.490566037735849,53
+H0221,Riad Majorelle Ouarzazate,Ouarzazate,Riad,4,18,0.4,1,0,1,2018,1241.0,8.076470588235296,17
+H0222,Riad Océan Fès,Fès,Riad,3,15,0.0,0,0,1,2012,615.0,7.540000000000001,5
+H0223,Resort Sahara Tanger,Tanger,Resort,4,130,6.5,1,1,1,2011,1566.0,7.508219178082192,73
+H0224,Hôtel Bahia Marrakech,Marrakech,Hôtel,3,85,1.0,1,0,1,2011,952.0,6.751219512195123,41
+H0225,Dar Kasbah Ouarzazate,Ouarzazate,Maison d'hôtes,3,7,1.0,0,0,1,2012,503.0,7.633333333333333,3
+H0226,Auberge Océan Casablanca,Casablanca,Auberge,1,21,5.2,0,0,1,2012,257.0,4.185714285714286,7
+H0227,Riad Oasis Chefchaouen,Chefchaouen,Riad,4,8,0.2,0,0,1,2020,1007.0,8.428571428571429,7
+H0228,Riad Andalous Fès,Fès,Riad,3,18,0.4,1,0,0,2024,756.0,6.366666666666667,9
+H0229,Hôtel Azur Marrakech,Marrakech,Hôtel,1,49,2.4,1,0,1,2008,366.0,6.22,15
+H0230,Riad Majorelle Marrakech,Marrakech,Riad,4,15,2.0,0,0,1,2018,1220.0,7.12,5
+H0231,Dar Andalous Tanger,Tanger,Maison d'hôtes,4,12,1.2,0,0,1,2011,1020.0,6.866666666666667,6
+H0232,Dar Nomade Fès,Fès,Maison d'hôtes,2,9,0.9,0,0,1,2024,352.0,6.241914357368496,0
+H0233,Riad Argan Marrakech,Marrakech,Riad,3,11,0.1,1,0,1,2019,812.0,7.933333333333334,3
+H0234,Riad Océan Tanger,Tanger,Riad,3,8,0.3,1,0,1,2015,658.0,7.8,3
+H0235,Hôtel Amazigh Essaouira,Essaouira,Hôtel,5,65,1.5,1,0,1,2018,2549.0,8.048571428571428,35
+H0236,Dar Saphir Agadir,Agadir,Maison d'hôtes,3,11,1.8,1,0,0,2024,561.0,7.550000000000001,6
+H0237,Hôtel Océan Agadir,Agadir,Hôtel,5,154,1.4,1,0,1,2025,2497.0,7.8329787234042545,94
+H0238,Riad Andalous Marrakech,Marrakech,Riad,3,15,0.9,0,0,1,2013,842.0,6.628571428571428,7
+H0239,Dar Argan Rabat,Rabat,Maison d'hôtes,3,11,1.1,0,0,1,2025,684.0,7.328571428571428,7
+H0240,Dar Amazigh Casablanca,Casablanca,Maison d'hôtes,2,11,0.6,0,0,1,2018,448.0,6.066666666666666,6

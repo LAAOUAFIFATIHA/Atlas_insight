@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Tableau de bord{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Tableau de bord</h1>
+  <p>Vue d'ensemble de la satisfaction des touristes, de la demande prévue et de la saisonnalité des prix au Maroc.</p>
+</div>
+
+<div id="kpis" class="grid kpis" aria-live="polite"></div>
+
+<div class="grid cols-2">
+  <section class="card">
+    <h2>Satisfaction par destination</h2>
+    <div class="sub">Note globale moyenne sur 10</div>
+    <div class="chart-box"><canvas id="ch-notes" role="img" aria-label="Note moyenne par destination"></canvas></div>
+  </section>
+  <section class="card">
+    <h2>Demande touristique : historique et prévision</h2>
+    <div class="sub">Arrivées mensuelles totales, en milliers (10 destinations)</div>
+    <div class="chart-box"><canvas id="ch-demande" role="img" aria-label="Arrivées mensuelles : historique et prévision"></canvas></div>
+  </section>
+</div>
+
+<div class="grid cols-2" style="margin-top:16px">
+  <section class="card">
+    <h2>Points forts et points faibles</h2>
+    <div class="sub">Écart de la note par aspect à la moyenne nationale (+ : meilleur que la moyenne, − : moins bien)</div>
+    <div class="table-wrap" id="heat-aspects"><div class="spinner">Chargement…</div></div>
+  </section>
+  <section class="card">
+    <h2>Saisonnalité des prix</h2>
+    <div class="sub">Prix de la nuitée relatif à la moyenne de l'établissement (1 = prix moyen)</div>
+    <div class="chart-box"><canvas id="ch-prix" role="img" aria-label="Prix relatif par mois"></canvas></div>
+  </section>
+</div>
+
+<section class="card" style="margin-top:16px">
+  <h2>Profils d'établissements</h2>
+  <div class="sub">Segmentation (K-Means) des établissements selon satisfaction, prix et occupation</div>
+  <div class="table-wrap" id="segments"></div>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/index.js') }}"></script>{% endblock %}
