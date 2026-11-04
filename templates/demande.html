@@ -1,39 +1,79 @@
 {% extends "base.html" %}
 {% block title %}Demande touristique{% endblock %}
+
 {% block content %}
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="{{ url_for('accueil') }}">Tableau de bord</a>
+  <span class="breadcrumb-sep" aria-hidden="true">›</span>
+  <span aria-current="page">Demande touristique</span>
+</nav>
+
 <div class="page-head">
-  <h1>Demande touristique</h1>
-  <p>Prévision des arrivées sur les 12 prochains mois, par destination, pour anticiper les périodes de forte et de faible fréquentation.</p>
+  <h1>Prévision de la demande</h1>
+  <p>Prévision des arrivées sur les 12 prochains mois par destination, pour anticiper les pics et les creux de fréquentation.</p>
 </div>
 
-<section class="card">
-  <div style="max-width:320px">
+<div class="alert alert-info mb-8" role="note">
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+  <span>Les prévisions sont générées par le modèle <strong>modele_demande.joblib</strong> à partir de données synthétiques. Courbes historiques = données observées. Courbes pointillées = prévisions IA.</span>
+</div>
+
+<!-- Filtre destination -->
+<div class="filter-bar">
+  <div class="filter-field" style="max-width:280px">
     <label for="destination">Destination</label>
     <select id="destination">
       {% for d in destinations %}<option value="{{ d }}">{{ d }}</option>{% endfor %}
     </select>
   </div>
-</section>
+  <div class="filter-actions">
+    <button class="btn btn-ghost btn-sm" id="exportDemandeBtn">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Exporter prévisions CSV
+    </button>
+  </div>
+</div>
 
-<div id="kpis" class="grid kpis" style="margin-top:16px" aria-live="polite"></div>
+<!-- KPIs -->
+<div id="kpis" class="grid kpi-grid" aria-live="polite"></div>
 
-<div class="grid cols-2">
-  <section class="card">
+<!-- Graphique + Tableau -->
+<div class="grid cols-2 mt-16">
+  <section class="card card-accent">
     <h2>Arrivées mensuelles</h2>
-    <div class="sub">Milliers de touristes : 36 derniers mois observés et 12 mois prévus</div>
+    <p class="card-sub">Milliers de touristes — 36 mois observés + 12 mois prévus</p>
+    <div class="chart-toolbar">
+      <button class="btn btn-ghost btn-sm" id="exportDemandeChartBtn">PNG</button>
+    </div>
     <div class="chart-box tall"><canvas id="ch-demande" role="img" aria-label="Historique et prévision des arrivées"></canvas></div>
   </section>
+
   <section class="card">
     <h2>Détail des 12 prochains mois</h2>
-    <div class="sub">Indice : 1 = moyenne mensuelle des 12 derniers mois de la destination</div>
-    <div class="table-wrap" id="table-prev"></div>
+    <p class="card-sub">Indice relatif à la moyenne mensuelle des 12 derniers mois de la destination</p>
+    <div class="export-bar">
+      <button class="btn btn-ghost btn-sm" id="exportTableBtn">CSV</button>
+    </div>
+    <div class="table-wrap mt-8" id="table-prev"><div class="skeleton skeleton-chart"></div></div>
   </section>
 </div>
 
-<section class="card" style="margin-top:16px">
-  <h2>Calendrier de la demande : toutes destinations</h2>
-  <div class="sub">Plus la case est foncée, plus la fréquentation prévue est forte (indice relatif à la moyenne de chaque destination)</div>
-  <div class="table-wrap" id="calendrier"></div>
+<!-- Calendrier de la demande -->
+<section class="card mt-16">
+  <h2>Calendrier de la demande — toutes destinations</h2>
+  <p class="card-sub">Plus la case est colorée, plus la fréquentation prévue est forte (indice relatif à la moyenne de chaque destination)</p>
+  <div class="legend mb-8">
+    <span><i style="background:var(--c1);opacity:.15"></i> Faible</span>
+    <span><i style="background:var(--c1);opacity:.45"></i> Moyenne</span>
+    <span><i style="background:var(--c1);opacity:.7"></i> Forte</span>
+  </div>
+  <div class="table-wrap" id="calendrier"><div class="skeleton skeleton-chart"></div></div>
+  <div class="export-bar mt-8">
+    <button class="btn btn-ghost btn-sm" id="exportCalendrierBtn">Exporter calendrier CSV</button>
+  </div>
 </section>
 {% endblock %}
-{% block scripts %}<script src="{{ url_for('static', filename='js/demande.js') }}"></script>{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/demande.js') }}"></script>
+{% endblock %}

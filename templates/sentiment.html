@@ -1,32 +1,79 @@
 {% extends "base.html" %}
 {% block title %}Analyse des avis{% endblock %}
+
 {% block content %}
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <a href="{{ url_for('accueil') }}">Tableau de bord</a>
+  <span class="breadcrumb-sep" aria-hidden="true">›</span>
+  <span aria-current="page">Analyse des avis</span>
+</nav>
+
 <div class="page-head">
-  <h1>Analyse des avis</h1>
-  <p>Collez un ou plusieurs avis de touristes (un avis par ligne). Le modèle détecte le sentiment, les mots qui ont pesé dans la décision, et la tonalité de chaque aspect du séjour cité.</p>
+  <h1>Analyse des avis clients</h1>
+  <p>Collez un ou plusieurs avis (un avis par ligne) ou importez un fichier CSV. Le modèle détecte le sentiment, les mots décisifs et la tonalité de chaque aspect cité.</p>
+</div>
+
+<div class="alert alert-synth mb-8" role="note">
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+  <span>Le modèle est entraîné sur des avis <strong>synthétiques en français</strong>. Sur de vrais avis (autres langues, ironie, argot) la fiabilité sera plus faible.</span>
 </div>
 
 <section class="card">
-  <form id="form-avis">
-    <label for="texte">Avis à analyser</label>
-    <textarea id="texte" name="texte" placeholder="Ex. : Le personnel est adorable mais la chambre n'était pas propre." required></textarea>
-    <div class="actions">
-      <button class="btn" type="submit">Analyser</button>
-      <span class="muted small">Exemples :</span>
-      <button class="btn ghost" type="button" data-exemple="0">Avis positif</button>
-      <button class="btn ghost" type="button" data-exemple="1">Avis négatif</button>
-      <button class="btn ghost" type="button" data-exemple="2">Avis mitigé</button>
-      <button class="btn ghost" type="button" data-exemple="3">3 avis à la fois</button>
+  <form id="form-avis" novalidate>
+    <div class="flex gap-8" style="align-items:flex-end; flex-wrap:wrap; margin-bottom:12px">
+      <div style="flex:1; min-width:200px">
+        <label for="texte">Avis à analyser <span class="muted small">(un avis par ligne, max 200)</span></label>
+        <textarea id="texte" name="texte"
+          placeholder="Ex. : Le personnel est adorable mais la chambre n'était pas propre."
+          rows="6" aria-required="true"></textarea>
+      </div>
     </div>
-    <div id="erreur"></div>
+
+    <div class="actions">
+      <button class="btn" type="submit" id="btn-analyser">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Analyser
+      </button>
+      <label class="btn btn-ghost" for="csv-import" style="cursor:pointer; margin-top:0">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        Importer CSV
+        <input type="file" id="csv-import" accept=".csv,.txt" class="sr-only">
+      </label>
+      <span class="muted small">Exemples :</span>
+      <button class="btn btn-ghost btn-sm" type="button" data-exemple="0">Positif</button>
+      <button class="btn btn-ghost btn-sm" type="button" data-exemple="1">Négatif</button>
+      <button class="btn btn-ghost btn-sm" type="button" data-exemple="2">Mitigé</button>
+      <button class="btn btn-ghost btn-sm" type="button" data-exemple="3">3 avis</button>
+    </div>
+    <div id="erreur" role="alert" aria-live="assertive"></div>
   </form>
 </section>
 
-<section class="card" id="resultats" style="margin-top:16px" hidden>
-  <h2>Résultats</h2>
-  <div id="resume" class="actions" style="margin:6px 0 10px"></div>
+<!-- Résultats -->
+<section class="card mt-16" id="resultats" hidden aria-live="polite">
+  <div class="flex gap-12" style="align-items:center; flex-wrap:wrap; margin-bottom:16px">
+    <h2 style="margin:0">Résultats</h2>
+    <div id="resume" class="flex gap-8 flex-wrap"></div>
+    <div style="margin-left:auto">
+      <button class="btn btn-ghost btn-sm" id="exportAvisBtn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Exporter CSV
+      </button>
+    </div>
+  </div>
+
+  <!-- Graphique résumé -->
+  <div class="grid cols-2 mb-8" style="margin-bottom:20px">
+    <div class="chart-box short">
+      <canvas id="ch-resume-sent" aria-label="Répartition des sentiments"></canvas>
+    </div>
+    <div id="resume-aspects"></div>
+  </div>
+
   <div id="liste"></div>
-  <p class="muted small" style="margin-top:12px">Le modèle est entraîné sur des avis synthétiques en français : sur de vrais avis (autres langues, ironie, argot) la fiabilité sera plus faible.</p>
 </section>
 {% endblock %}
-{% block scripts %}<script src="{{ url_for('static', filename='js/sentiment.js') }}"></script>{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/sentiment.js') }}"></script>
+{% endblock %}
