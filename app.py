@@ -132,6 +132,27 @@ def api_calendrier():
     return jsonify(atlas.calendrier_demande())
 
 
+@app.get("/api/demande-multi")
+@cache(CACHE_DASHBOARD)
+def api_demande_multi():
+    """
+    Prévision pour plusieurs destinations.
+    Query params : destinations=Marrakech,Agadir (virgule-séparés, max 5)
+    """
+    raw = request.args.get("destinations", "")
+    noms = [d.strip() for d in raw.split(",") if d.strip()][:5]
+    if not noms:
+        raise ValidationError("Paramètre 'destinations' requis.")
+    resultats = {}
+    for nom in noms:
+        d_canon = nom if nom in DESTINATIONS else next(
+            (d for d in DESTINATIONS if d.lower() == nom.lower()), None
+        )
+        if d_canon:
+            resultats[d_canon] = atlas.demande(d_canon)
+    return jsonify(resultats)
+
+
 # ---------------------------------------------------------------------------
 # API — hôtels
 # ---------------------------------------------------------------------------

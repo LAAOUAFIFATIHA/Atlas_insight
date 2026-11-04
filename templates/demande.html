@@ -21,8 +21,15 @@
 <!-- Filtre destination -->
 <div class="filter-bar">
   <div class="filter-field" style="max-width:280px">
-    <label for="destination">Destination</label>
+    <label for="destination">Destination principale</label>
     <select id="destination">
+      {% for d in destinations %}<option value="{{ d }}">{{ d }}</option>{% endfor %}
+    </select>
+  </div>
+  <div class="filter-field" style="max-width:220px">
+    <label for="compare-dest">Comparer avec</label>
+    <select id="compare-dest">
+      <option value="">— Aucune comparaison —</option>
       {% for d in destinations %}<option value="{{ d }}">{{ d }}</option>{% endfor %}
     </select>
   </div>
