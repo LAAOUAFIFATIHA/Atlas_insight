@@ -121,8 +121,8 @@ class Atlas:
 
         # 3) constantes dérivées des données
         self.derniere_date = self.dm["date"].max()
-        self.cutoff = self.derniere_date + pd.offsets.MonthBegin(1)                 # 1er mois à prévoir
-        self.t_max = float(self.prix["t_annees"].max())                              # prix exprimés en MAD « dernière date »
+        self.cutoff = self.derniere_date + pd.offsets.MonthBegin(1)       # 1er mois à prévoir
+        self.t_max = float(self.prix["t_annees"].max())                    # prix exprimés en MAD « dernière date »
         self.moy_dest = self.dm[self.dm["date"] >= "2023-01-01"].groupby("destination")["arrivees_milliers"].mean()
         self.dates_futur = pd.date_range(self.cutoff, periods=12, freq="MS")
 
@@ -298,33 +298,70 @@ class Atlas:
             idxs = [i for i, p in enumerate(phrases) if set(normaliser_texte(p).split()) & kws]
             if not idxs:
                 continue
-            score = float(np.mean([probas[i][ip] - probas[i][ineg] for i in idxs]))   # -1 (négatif) à +1 (positif)
+            score = float(np.mean([probas[i][ip] - probas[i][ineg] for i in idxs]))  # -1 (négatif) à +1 (positif)
             ton = "positif" if score > 0.25 else "négatif" if score < -0.25 else "neutre"
             res.append({"aspect": asp, "tonalite": ton, "score": round(score, 2), "phrase": phrases[idxs[0]]})
         return res
 
     # --------------------------------------------------------------- dashboard
-    def tableau_de_bord(self) -> dict:
-        a = self.avis
+    def tableau_de_bord(self, destination: str | None = None) -> dict:
+        """Données du tableau de bord, optionnellement filtrées par destination."""
+        a = self.avis if destination is None else self.avis[self.avis["destination"] == destination]
+        p = self.prix if destination is None else self.prix[self.prix["destination"] == destination]
+        h = self.hotels if destination is None else self.hotels[self.hotels["destination"] == destination]
+        seg = self.segments if destination is None else self.segments[self.segments["destination"] == destination]
+
         par_dest = a.groupby("destination")["note_globale"].mean().sort_values(ascending=False)
         heat = a.groupby("destination")[NOTES].mean().loc[par_dest.index]
-        moyenne_nat = a[NOTES].mean()
+        moyenne_nat = self.avis[NOTES].mean()   # toujours la moyenne nationale de référence
         hist = self.dm[self.dm["date"] >= self.derniere_date - pd.DateOffset(months=23)].groupby("date")["arrivees_milliers"].sum()
         fut = self.prevision.groupby("date")["prevu"].sum()
         lab = lambda d: f"{MOIS_FR[d.month - 1]} {str(d.year)[2:]}"
-        prix_mois = self.prix.groupby("mois")["prix_relatif_hotel"].mean()
-        seg = self.segments.groupby("profil").agg(n=("hotel_id", "count"), note=("note_moyenne_hotel", "mean"),
-                                                  prix=("prix_moyen", "mean"), occ=("occupation", "mean")).reset_index()
+        prix_mois = p.groupby("mois")["prix_relatif_hotel"].mean()
+        seg_grp = seg.groupby("profil").agg(n=("hotel_id", "count"), note=("note_moyenne_hotel", "mean"),
+                                            prix=("prix_moyen", "mean"), occ=("occupation", "mean")).reset_index()
+
+        # Répartitions
+        types_count = h.groupby("type_hebergement").size().sort_values(ascending=False)
+        etoiles_count = h.groupby("etoiles").size().sort_index()
+        sentiment_count = {s: int((a["sentiment"] == s).sum()) for s in ("positif", "neutre", "négatif")}
+
+        # Métriques prix et occupation
+        prix_moy_global = float(p["prix_moyen_nuit"].mean()) if len(p) else None
+        taux_occ_moy = float(p["taux_occupation"].mean()) if len(p) else None
+
         return {
-            "kpis": {"avis": int(len(a)), "etablissements": int(len(self.hotels)), "destinations": len(DESTINATIONS),
-                     "note_moyenne": round(float(a["note_globale"].mean()), 2),
-                     "part_positifs": round(float((a["sentiment"] == "positif").mean() * 100), 1),
-                     "part_negatifs": round(float((a["sentiment"] == "négatif").mean() * 100), 1)},
+            "kpis": {
+                "avis": int(len(a)),
+                "etablissements": int(len(h)),
+                "destinations": len(DESTINATIONS),
+                "note_moyenne": round(float(a["note_globale"].mean()), 2) if len(a) else None,
+                "part_positifs": round(float((a["sentiment"] == "positif").mean() * 100), 1) if len(a) else None,
+                "part_negatifs": round(float((a["sentiment"] == "négatif").mean() * 100), 1) if len(a) else None,
+                "prix_moyen_nuit": round(prix_moy_global) if prix_moy_global else None,
+                "taux_occupation_moy": round(taux_occ_moy * 100, 1) if taux_occ_moy else None,
+            },
             "note_destination": {"labels": par_dest.index.tolist(), "valeurs": par_dest.round(2).tolist()},
             "aspects": {"aspects": [LIBELLE_ASPECT[c] for c in NOTES], "destinations": heat.index.tolist(),
                         "valeurs": [[round(float(v - moyenne_nat[c]), 2) for c, v in row.items()] for _, row in heat.iterrows()]},
             "demande_totale": {"hist_labels": [lab(d) for d in hist.index], "hist": hist.round(0).tolist(),
                                "prev_labels": [lab(d) for d in fut.index], "prev": fut.round(0).tolist()},
             "saisonnalite_prix": {"labels": MOIS_FR, "valeurs": [round(float(prix_mois.get(m, np.nan)), 3) for m in range(1, 13)]},
-            "segments": seg.round(2).to_dict(orient="records"),
+            "segments": seg_grp.round(2).to_dict(orient="records"),
+            "repartition_types": {"labels": types_count.index.tolist(), "valeurs": types_count.tolist()},
+            "repartition_etoiles": {"labels": [f"{e}★" for e in etoiles_count.index.tolist()], "valeurs": etoiles_count.tolist()},
+            "repartition_sentiment": sentiment_count,
         }
+
+    def stats_destinations(self) -> list[dict]:
+        """Statistiques de base par destination pour le sélecteur de filtre."""
+        a = self.avis.groupby("destination").agg(
+            avis=("review_id", "count"),
+            note=("note_globale", "mean"),
+            positifs=("sentiment", lambda x: (x == "positif").sum()),
+        ).reset_index()
+        h = self.hotels.groupby("destination").agg(etablissements=("hotel_id", "count")).reset_index()
+        merged = a.merge(h, on="destination")
+        merged["note"] = merged["note"].round(2)
+        merged["part_positifs"] = (merged["positifs"] / merged["avis"] * 100).round(1)
+        return merged[["destination", "avis", "note", "etablissements", "part_positifs"]].to_dict(orient="records")
