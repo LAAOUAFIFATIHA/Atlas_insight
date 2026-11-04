@@ -48,6 +48,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const t2 = $("#themeToggleMobile");
   if (t1) t1.addEventListener("click", toggleTheme);
   if (t2) t2.addEventListener("click", toggleTheme);
+
+  // Adaptation automatique si l'OS change de thème et qu'aucune préférence n'a été sauvegardée
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+    if (!localStorage.getItem("atlas-theme")) applyTheme(e.matches, false);
+  });
 });
 
 /* ============================================================
@@ -79,16 +84,35 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && sidebar.classList.contains("open")) closeSidebar();
   });
+
+  // Fermer la sidebar sur clic d'un lien de navigation (mobile uniquement)
+  $$(".nav-link", sidebar).forEach((link) => {
+    link.addEventListener("click", () => {
+      if (window.innerWidth < 768) closeSidebar();
+    });
+  });
 });
 
 /* ============================================================
    API JSON
    ============================================================ */
+let _pendingRequests = 0;
+function _setLoading(active) {
+  _pendingRequests += active ? 1 : -1;
+  if (_pendingRequests < 0) _pendingRequests = 0;
+  document.documentElement.classList.toggle("loading", _pendingRequests > 0);
+}
+
 async function api(url, options) {
-  const res = await fetch(url, options);
-  const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(data.erreur || `Erreur ${res.status}`);
-  return data;
+  _setLoading(true);
+  try {
+    const res = await fetch(url, options);
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.erreur || `Erreur ${res.status}`);
+    return data;
+  } finally {
+    _setLoading(false);
+  }
 }
 
 const postJSON = (url, body) =>

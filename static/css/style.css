@@ -700,3 +700,61 @@ tbody tr:hover td { background: var(--bg); }
   .kpi-grid { grid-template-columns: 1fr; }
   h1 { font-size: 1.35rem; }
 }
+
+/* ============================================================
+   AMÉLIORATIONS FINALES
+   ============================================================ */
+
+/* Indicateur de chargement global (barre en haut de page) */
+html::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0s, opacity .3s;
+  z-index: 9999;
+  opacity: 0;
+}
+html.loading::before {
+  transform: scaleX(.6);
+  opacity: 1;
+  transition: transform 2s cubic-bezier(.1,0,.4,1), opacity 0s;
+}
+
+/* Scroll horizontal fluide du calendrier de demande sur mobile */
+.table-wrap {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+/* Focus visible accessible sur les boutons et liens */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Heatmap : largeur minimale des cellules sur petit écran */
+.heat td, .heat th { min-width: 44px; }
+
+/* Éviter la coupure de mot dans les badges */
+.badge { word-break: keep-all; }
+
+/* Amélioration des formulaires : indication visuelle de champ requis */
+input:required:invalid { border-color: var(--bad); }
+
+/* Page de tarification : mise en valeur des scénarios */
+[data-scenario="0"] { font-weight: 650; }
+
+/* Transition douce sur les changements de thème pour les graphiques */
+canvas { transition: filter var(--dur); }
+
+/* Amélioration du hover sur les lignes de tableau */
+tbody tr { transition: background var(--dur); }
+
+/* Affichage correct des alertes en mode sombre */
+[data-theme="dark"] .alert.alert-info  { border-left-color: var(--info); }
+[data-theme="dark"] .alert.alert-warn  { border-left-color: var(--warn); }
+[data-theme="dark"] .alert.alert-synth { border-left-color: var(--warn); }

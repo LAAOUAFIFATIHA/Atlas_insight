@@ -167,11 +167,12 @@
         labels: sp.labels,
         datasets: [{
           data: sp.valeurs,
-          backgroundColor: sp.valeurs.map((v) => (v >= 1 ? c2 : c1)),
+          backgroundColor: sp.valeurs.map((v) => (isNaN(v) || v >= 1 ? c2 : c1)),
           borderRadius: 5,
         }],
       },
       options: {
+        spanGaps: true,
         plugins: {
           legend: { display: false },
           tooltip: { callbacks: { label: (c) => ` ${c.parsed.y.toFixed(2)} (${c.parsed.y >= 1 ? "+" : ""}${((c.parsed.y - 1) * 100).toFixed(0)} %)` } },
