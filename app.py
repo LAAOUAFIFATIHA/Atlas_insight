@@ -107,7 +107,7 @@ def api_sentiment():
         raise ValidationError("Envoyez une liste « textes » non vide.")
     if len(textes) > MAX_AVIS:
         raise ValidationError(f"Maximum {MAX_AVIS} avis par requête.")
-    textes = [str(t).strip()[:MAX_CARACTERES] for t in textes if str(t).strip()]
+    textes = [str(t).strip()[:MAX_CARACTERES] for t in textes if t is not None and str(t).strip()]
     if not textes:
         raise ValidationError("Les avis sont vides.")
     logger.info("Analyse sentiment — %d avis", len(textes))

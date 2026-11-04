@@ -6,11 +6,16 @@ Les variables d'entrée des modèles sont calculées EXACTEMENT comme dans le no
 from __future__ import annotations
 
 import re
+import unicodedata
+import warnings
 from pathlib import Path
 
 import joblib
 import numpy as np
 import pandas as pd
+from sklearn.exceptions import InconsistentVersionWarning
+
+warnings.filterwarnings("ignore", category=InconsistentVersionWarning)
 
 BASE = Path(__file__).resolve().parent
 MODELS_DIR = BASE / "models"
@@ -57,6 +62,53 @@ ASPECT_MOTS = {
 
 class ValidationError(ValueError):
     """Erreur de saisie utilisateur (renvoyée en HTTP 400 par l'API)."""
+
+
+def destination_canonique(nom: str) -> str | None:
+    """Retourne le nom canonique d'une destination (gère les accents manquants et la casse)."""
+    if nom in DESTINATIONS:
+        return nom
+    nom_norm = nom.strip().lower()
+    for d in DESTINATIONS:
+        if d.lower() == nom_norm:
+            return d
+    return None
+
+
+def canoniser_libelle(v) -> str | None:
+    """Normalise une valeur d'entrée utilisateur pour comparer avec les libellés connus."""
+    if v is None:
+        return None
+    if isinstance(v, str):
+        text = v.strip()
+    else:
+        text = str(v).strip()
+    text = " ".join(text.split()) if text else None
+    if text is None:
+        return None
+    text = unicodedata.normalize("NFKD", text)
+    text = "".join(ch for ch in text if not unicodedata.combining(ch))
+    return text.casefold()
+
+
+def destination_canonique(v) -> str | None:
+    label = canoniser_libelle(v)
+    if label is None:
+        return None
+    for destination in DESTINATIONS:
+        if label == canoniser_libelle(destination):
+            return destination
+    return None
+
+
+def type_hebergement_canonique(v) -> str | None:
+    label = canoniser_libelle(v)
+    if label is None:
+        return None
+    for type_hebergement in TYPES_HEBERGEMENT:
+        if label == canoniser_libelle(type_hebergement):
+            return type_hebergement
+    return None
 
 
 # --------------------------------------------------------------------------- #
@@ -156,8 +208,10 @@ class Atlas:
         return f[["destination", "date", "prevu", "indice", "idx_demande"]].reset_index(drop=True)
 
     def demande(self, destination: str) -> dict:
-        if destination not in DESTINATIONS:
-            raise ValidationError(f"Destination inconnue : {destination}")
+        original = canoniser_libelle(destination)
+        destination = destination_canonique(destination)
+        if destination is None:
+            raise ValidationError(f"Destination inconnue : {original or destination}")
         hist = self.dm[(self.dm["destination"] == destination)].sort_values("date").tail(36)
         prev = self.prevision[self.prevision["destination"] == destination].sort_values("date")
         dernier12 = self.dm[(self.dm["destination"] == destination)
@@ -206,6 +260,8 @@ class Atlas:
     def _valider_prix(p: dict) -> dict:
         def nombre(cle, lo, hi, defaut=None):
             v = p.get(cle, defaut)
+            if isinstance(v, bool):
+                raise ValidationError(f"« {cle} » doit être un nombre.")
             try:
                 v = float(v)
             except (TypeError, ValueError):
@@ -214,12 +270,14 @@ class Atlas:
                 raise ValidationError(f"« {cle} » doit être compris entre {lo} et {hi}.")
             return v
 
-        if p.get("destination") not in DESTINATIONS:
+        destination = destination_canonique(p.get("destination"))
+        if destination is None:
             raise ValidationError("Destination invalide.")
-        if p.get("type_hebergement") not in TYPES_HEBERGEMENT:
+        type_hebergement = type_hebergement_canonique(p.get("type_hebergement"))
+        if type_hebergement is None:
             raise ValidationError("Type d'hébergement invalide.")
         return {
-            "destination": p["destination"], "type_hebergement": p["type_hebergement"],
+            "destination": destination, "type_hebergement": type_hebergement,
             "etoiles": int(nombre("etoiles", 1, 5)), "capacite_chambres": int(nombre("capacite_chambres", 1, 1000)),
             "distance_centre_km": nombre("distance_centre_km", 0, 50),
             "piscine": int(nombre("piscine", 0, 1, 0)), "spa": int(nombre("spa", 0, 1, 0)),
