@@ -8,7 +8,7 @@
   const resetBtn   = $("#resetFilters");
 
   let dashData = null;
-  let chNotes = null, chDemande = null, chPrix = null, chTypes = null, chSent = null;
+  let chNotes = null, chDemande = null, chPrix = null, chTypes = null, chSent = null, chEtoiles = null;
 
   /* ---- Icônes SVG inline pour les KPI ---- */
   function svgIcon(path) {
@@ -51,6 +51,7 @@
     rendrePrixSaisonnalite(dashData.saisonnalite_prix);
     rendreTypes(dashData.repartition_types);
     rendreSentiment(dashData.repartition_sentiment);
+    rendreEtoiles(dashData.repartition_etoiles);
     rendreSegments(dashData.segments);
   }
 
@@ -182,6 +183,35 @@
       },
     });
     $("#exportPrixSaisBtn").onclick = () => exportChartPng(cnv, "saisonnalite-prix.png");
+  }
+
+  /* ---- Répartition par étoiles ---- */
+  function rendreEtoiles(re) {
+    if (!re) return;
+    const cnv = $("#ch-etoiles");
+    if (!cnv) return;
+    chEtoiles = makeChart(cnv, {
+      type: "bar",
+      data: {
+        labels: re.labels,
+        datasets: [{
+          data: re.valeurs,
+          backgroundColor: palette(),
+          borderRadius: 5,
+          maxBarThickness: 32,
+        }],
+      },
+      options: {
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: (c) => ` ${c.parsed.y} établissements` } },
+        },
+        scales: {
+          y: { beginAtZero: true, title: { display: true, text: "Établissements" } },
+          x: { grid: { display: false } },
+        },
+      },
+    });
   }
 
   /* ---- Répartition types d'hébergement ---- */
