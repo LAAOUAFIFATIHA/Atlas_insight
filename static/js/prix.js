@@ -12,13 +12,25 @@
     Promotions:["down", "▼ Promotions"],
   };
 
-  /* ---- Slider scénario ---- */
+  /* ---- Slider scénario + boutons rapides ---- */
   const ajust    = $("#ajustement");
   const ajustVal = $("#ajustement-val");
-  ajust.addEventListener("input", () => {
+
+  function updateSliderDisplay() {
     const v = +ajust.value;
     ajustVal.textContent = v > 0 ? `+${v} %` : v < 0 ? `${v} %` : "0 %";
     ajustVal.style.color = v > 0 ? css("--good") : v < 0 ? css("--bad") : css("--text-3");
+  }
+
+  ajust.addEventListener("input", updateSliderDisplay);
+
+  // Boutons scénarios rapides
+  $$("[data-scenario]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      ajust.value = btn.dataset.scenario;
+      updateSliderDisplay();
+      calculer();
+    });
   });
 
   /* ---- Pré-remplissage depuis un hôtel existant ---- */
