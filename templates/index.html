@@ -1,43 +1,121 @@
 {% extends "base.html" %}
 {% block title %}Tableau de bord{% endblock %}
+
 {% block content %}
+<!-- Breadcrumb -->
+<nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <span>AtlasInsight</span>
+  <span class="breadcrumb-sep" aria-hidden="true">›</span>
+  <span aria-current="page">Tableau de bord</span>
+</nav>
+
 <div class="page-head">
   <h1>Tableau de bord</h1>
-  <p>Vue d'ensemble de la satisfaction des touristes, de la demande prévue et de la saisonnalité des prix au Maroc.</p>
+  <p>Vue d'ensemble du tourisme marocain : satisfaction, demande prévue et saisonnalité des prix.</p>
 </div>
 
-<div id="kpis" class="grid kpis" aria-live="polite"></div>
+<!-- Filtre destination -->
+<div class="filter-bar" role="search" aria-label="Filtres">
+  <div class="filter-field">
+    <label for="filterDest">Destination</label>
+    <select id="filterDest">
+      <option value="">Toutes les destinations</option>
+      {% for d in ["Marrakech","Casablanca","Agadir","Fès","Tanger","Rabat","Essaouira","Chefchaouen","Ouarzazate","Merzouga"] %}
+      <option value="{{ d }}">{{ d }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="filter-actions">
+    <button class="btn btn-ghost btn-sm" id="resetFilters" type="button">Réinitialiser</button>
+  </div>
+</div>
 
-<div class="grid cols-2">
-  <section class="card">
+<!-- KPIs -->
+<div id="kpis" class="grid kpi-grid" aria-live="polite" aria-label="Indicateurs clés"></div>
+
+<!-- Ligne 1 : Notes + Demande -->
+<div class="grid cols-2 mt-16">
+  <section class="card card-accent">
     <h2>Satisfaction par destination</h2>
-    <div class="sub">Note globale moyenne sur 10</div>
+    <p class="card-sub">Note globale moyenne sur 10 — triée par satisfaction</p>
+    <div class="chart-toolbar">
+      <button class="btn btn-ghost btn-sm" id="exportNotesBtn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        PNG
+      </button>
+    </div>
     <div class="chart-box"><canvas id="ch-notes" role="img" aria-label="Note moyenne par destination"></canvas></div>
   </section>
-  <section class="card">
-    <h2>Demande touristique : historique et prévision</h2>
-    <div class="sub">Arrivées mensuelles totales, en milliers (10 destinations)</div>
+
+  <section class="card card-accent-c2">
+    <h2>Demande touristique — historique et prévision</h2>
+    <p class="card-sub">Arrivées mensuelles totales, en milliers (toutes destinations)</p>
+    <div class="chart-toolbar">
+      <button class="btn btn-ghost btn-sm" id="exportDemandeBtn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        PNG
+      </button>
+    </div>
     <div class="chart-box"><canvas id="ch-demande" role="img" aria-label="Arrivées mensuelles : historique et prévision"></canvas></div>
   </section>
 </div>
 
-<div class="grid cols-2" style="margin-top:16px">
+<!-- Ligne 2 : Heatmap aspects + Saisonnalité prix -->
+<div class="grid cols-2 mt-16">
   <section class="card">
     <h2>Points forts et points faibles</h2>
-    <div class="sub">Écart de la note par aspect à la moyenne nationale (+ : meilleur que la moyenne, − : moins bien)</div>
-    <div class="table-wrap" id="heat-aspects"><div class="spinner">Chargement…</div></div>
+    <p class="card-sub">Écart de la note par aspect à la moyenne nationale (+ meilleur, − moins bien)</p>
+    <div class="table-wrap" id="heat-aspects"><div class="skeleton skeleton-chart"></div></div>
   </section>
-  <section class="card">
+
+  <section class="card card-accent-c3">
     <h2>Saisonnalité des prix</h2>
-    <div class="sub">Prix de la nuitée relatif à la moyenne de l'établissement (1 = prix moyen)</div>
+    <p class="card-sub">Prix relatif à la moyenne de l'établissement — 1 = prix moyen</p>
+    <div class="chart-toolbar">
+      <button class="btn btn-ghost btn-sm" id="exportPrixSaisBtn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        PNG
+      </button>
+    </div>
     <div class="chart-box"><canvas id="ch-prix" role="img" aria-label="Prix relatif par mois"></canvas></div>
   </section>
 </div>
 
-<section class="card" style="margin-top:16px">
+<!-- Ligne 3 : Répartitions -->
+<div class="grid cols-3 mt-16">
+  <section class="card">
+    <h2>Types d'hébergement</h2>
+    <p class="card-sub">Nombre d'établissements par catégorie</p>
+    <div class="chart-box short"><canvas id="ch-types" role="img" aria-label="Répartition par type"></canvas></div>
+  </section>
+
+  <section class="card">
+    <h2>Répartition par étoiles</h2>
+    <p class="card-sub">Établissements par nombre d'étoiles</p>
+    <div class="chart-box short"><canvas id="ch-etoiles" role="img" aria-label="Répartition par étoiles"></canvas></div>
+  </section>
+
+  <section class="card">
+    <h2>Répartition des sentiments</h2>
+    <p class="card-sub">Part des avis positifs, neutres et négatifs</p>
+    <div class="chart-box short"><canvas id="ch-sentiment" role="img" aria-label="Répartition des sentiments"></canvas></div>
+  </section>
+</div>
+
+<!-- Profils d'établissements -->
+<section class="card mt-16">
   <h2>Profils d'établissements</h2>
-  <div class="sub">Segmentation (K-Means) des établissements selon satisfaction, prix et occupation</div>
-  <div class="table-wrap" id="segments"></div>
+  <p class="card-sub">Segmentation K-Means selon satisfaction, prix et occupation — <span id="nb-segments"></span></p>
+  <div class="export-bar">
+    <button class="btn btn-ghost btn-sm" id="exportSegmentsBtn">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Exporter CSV
+    </button>
+  </div>
+  <div class="table-wrap mt-8" id="segments"><div class="skeleton skeleton-chart"></div></div>
 </section>
 {% endblock %}
-{% block scripts %}<script src="{{ url_for('static', filename='js/index.js') }}"></script>{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+{% endblock %}

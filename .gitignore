@@ -1,0 +1,38 @@
+# Environnements virtuels Python
+.venv/
+venv/
+env/
+
+# Cache Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Fichiers de déploiement
+*.pyc
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Variables d'environnement
+.env
+.env.*
+!.env.example
+
+# Fichiers temporaires
+*.tmp
+*.bak

@@ -1,29 +1,135 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% block title %}AtlasInsight{% endblock %}</title>
+  <meta name="description" content="AtlasInsight — Plateforme d'analyse intelligente du tourisme au Maroc">
+  <title>{% block title %}AtlasInsight{% endblock %} — AtlasInsight</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap&font-display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232b5fa6'/><text y='.9em' font-size='70' x='15'>🧭</text></svg>">
+  {% block head %}{% endblock %}
 </head>
 <body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a class="brand" href="{{ url_for('accueil') }}"><span class="brand-mark" aria-hidden="true"></span>AtlasInsight</a>
-      <nav class="nav" aria-label="Navigation principale">
-        <a href="{{ url_for('accueil') }}" {% if page == 'accueil' %}aria-current="page"{% endif %}>Tableau de bord</a>
-        <a href="{{ url_for('page_avis') }}" {% if page == 'avis' %}aria-current="page"{% endif %}>Analyse des avis</a>
-        <a href="{{ url_for('page_demande') }}" {% if page == 'demande' %}aria-current="page"{% endif %}>Demande touristique</a>
-        <a href="{{ url_for('page_prix') }}" {% if page == 'prix' %}aria-current="page"{% endif %}>Tarification</a>
-      </nav>
+
+<!-- ================================================================
+     APP SHELL
+     ================================================================ -->
+<div class="app-shell">
+
+  <!-- ---- Sidebar ---- -->
+  <aside class="sidebar" id="sidebar" aria-label="Navigation principale">
+    <a class="sidebar-brand" href="{{ url_for('accueil') }}">
+      <div class="brand-logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <span>AtlasInsight</span>
+    </a>
+
+    <nav class="sidebar-nav" aria-label="Pages">
+      <div class="nav-section">
+        <div class="nav-section-label">Analyse</div>
+        <a href="{{ url_for('accueil') }}"
+           class="nav-link {% if page == 'accueil' %}active{% endif %}"
+           {% if page == 'accueil' %}aria-current="page"{% endif %}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+          </svg>
+          Tableau de bord
+        </a>
+        <a href="{{ url_for('page_avis') }}"
+           class="nav-link {% if page == 'avis' %}active{% endif %}"
+           {% if page == 'avis' %}aria-current="page"{% endif %}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          Analyse des avis
+        </a>
+        <a href="{{ url_for('page_demande') }}"
+           class="nav-link {% if page == 'demande' %}active{% endif %}"
+           {% if page == 'demande' %}aria-current="page"{% endif %}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+          Demande touristique
+        </a>
+        <a href="{{ url_for('page_prix') }}"
+           class="nav-link {% if page == 'prix' %}active{% endif %}"
+           {% if page == 'prix' %}aria-current="page"{% endif %}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+          Tarification
+        </a>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="theme-toggle w-full" id="themeToggle" aria-label="Basculer le thème">
+        <svg id="iconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg id="iconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+        <span id="themeLabel">Mode sombre</span>
+      </button>
     </div>
-  </header>
-  <main class="container">
-    {% block content %}{% endblock %}
-  </main>
-  <footer>Données synthétiques à des fins de démonstration : ces résultats ne sont pas des statistiques officielles du tourisme marocain.</footer>
-  <script src="{{ url_for('static', filename='js/chart.umd.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
-  {% block scripts %}{% endblock %}
+  </aside>
+
+  <!-- Overlay mobile -->
+  <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+
+  <!-- ---- Main ---- -->
+  <div class="main-wrap">
+
+    <!-- Header mobile -->
+    <header class="topbar-mobile" aria-label="En-tête mobile">
+      <button class="hamburger" id="menuToggle" aria-controls="sidebar" aria-expanded="false" aria-label="Ouvrir le menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+      <span class="brand-name">AtlasInsight</span>
+      <button class="theme-toggle btn-icon" id="themeToggleMobile" aria-label="Thème">
+        <svg id="iconSunMobile" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg id="iconMoonMobile" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </header>
+
+    <!-- Contenu de la page -->
+    <div class="page-content" id="main-content">
+      {% block content %}{% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer" role="contentinfo">
+      <span class="badge-synth" aria-label="Données synthétiques">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Données synthétiques
+      </span>
+      <span>Ces résultats ne sont pas des statistiques officielles du tourisme marocain — usage de démonstration uniquement.</span>
+    </footer>
+
+  </div><!-- /main-wrap -->
+</div><!-- /app-shell -->
+
+<!-- Scripts -->
+<script src="{{ url_for('static', filename='js/chart.umd.js') }}"></script>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+{% block scripts %}{% endblock %}
+
 </body>
 </html>
